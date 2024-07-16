@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+keycloak:
+  base-url: http://localhost:8080
+  token-uri: /auth/realms/myrealm/protocol/openid-connect/token
+  server-url: http://localhost:8080/auth
+  realm: myrealm
+  username: admin
+  password: admin
+  client-id: myclient
+  client-secret: mBgWe3ySigABvLVa8mKfIz3UrdVL6CTe
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: myclient
+            client-secret: mBgWe3ySigABvLVa8mKfIz3UrdVL6CTe
+            scope: openid, profile
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/auth/realms/myrealm
+            user-name-attribute: preferred_username
+
+
